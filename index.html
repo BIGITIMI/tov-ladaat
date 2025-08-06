@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טוב לדעת - מילים פשוטות. תובנות עמוקות.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff08" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            pointer-events: none;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero-text {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 1s ease forwards 0.5s;
+        }
+
+        .hero-image {
+            text-align: center;
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideLeft 1s ease forwards 0.8s;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(45deg, #fff, #f8f9fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section:nth-child(odd) {
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: block;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .about-text h3 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Video Section */
+        .video-container {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .video-wrapper {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            background: #667eea;
+            color: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .faq-question:hover {
+            background: #5a6fd8;
+        }
+
+        .faq-answer {
+            background: white;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            max-height: 200px;
+            padding: 1.5rem;
+        }
+
+        /* Contact Form */
+        .form-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 3rem auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background: linear-gradient(135deg, #ffefd5 0%, #ffedcc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff12" points="200,0 1000,200 800,1000 0,800"/></svg>');
+            pointer-events: none;
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea, #764ba2, #ee5a24, #ff6b6b);
+            z-index: -1;
+            border-radius: 20px;
+            padding: 3px;
+            background-clip: padding-box;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .testimonial-card:hover::before {
+            opacity: 1;
+        }
+
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
+
+        .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .testimonial-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            position: relative;
+        }
+
+        .testimonial-content p::before {
+            content: '"';
+            font-size: 4rem;
+            color: #667eea;
+            position: absolute;
+            top: -1rem;
+            right: -0.5rem;
+            font-family: Georgia, serif;
+            opacity: 0.3;
+        }
+
+        .testimonial-author {
+            text-align: center;
+            border-top: 2px solid #f8f9fa;
+            padding-top: 1rem;
+        }
+
+        .testimonial-author strong {
+            display: block;
+            color: #667eea;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .testimonial-author span {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive testimonials */
+        @media (max-width: 768px) {
+            .testimonials-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .testimonial-card {
+                transform: rotate(0deg) !important;
+                margin-top: 0 !important;
+            }
+        }
+
+        /* Chart Section */
+        .chart-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff15" points="0,200 1000,0 1000,800 0,1000"/></svg>');
+            pointer-events: none;
+        }
+
+        .chart-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .chart-intro {
+            margin-bottom: 3rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card.highlight {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: 2px solid #667eea;
+        }
+
+        .stat-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .stat-card.highlight h3 {
+            opacity: 1;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 0;
+        }
+
+        .stat-card.highlight .stat-number {
+            color: white;
+            font-size: 2rem;
+        }
+
+        .final-amount {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">טוב לדעת</div>
+            <ul class="nav-links">
+                <li><a href="#home">בית</a></li>
+                <li><a href="#about">אודות</a></li>
+                <li><a href="#video">סרטון</a></li>
+                <li><a href="#features">מה תלמד</a></li>
+                <li><a href="#testimonials">המלצות</a></li>
+                <li><a href="#faq">שאלות נפוצות</a></li>
+                <li><a href="#contact">צור קשר</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>מילים פשוטות. תובנות עמוקות.</h1>
+                    <p>גלה איך לבנות עושר אמיתי בלי לעבוד 24/7. הידע הפיננסי שאף אחד לא לימד אותך בבית הספר - עכשיו זמין לכולם.</p>
+                    <a href="#contact" class="cta-button">בואו נתחיל את המסע שלכם</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://via.placeholder.com/500x400/667eea/ffffff?text=תמונה+ראשית" alt="תכנון פיננסי">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">למה אתם עדיין עובדים קשה בשביל כסף?</h2>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h3>הבעיה שאף אחד לא מדבר עליה</h3>
+                    <p>רוב האנשים בישראל לא יודעים שיש להם דרכים לגרום לכסף שלהם להכפיל את עצמו בלי לעבוד יותר. הבנקים לא יספרו לכם על זה, הממשלה לא מסבירה, ובבית הספר בטח לא לימדו אתכם.</p>
+                    <p><strong>המציאות:</strong> כספי הפנסיה שלכם יכולים לעבוד בשבילכם כבר היום. עם הידע הנכון, אפשר להכפיל ואפילו לשלש את התשואות שלכם - באופן חוקי ובטוח לחלוטין.</p>
+                    <p>אני כאן כדי לשנות את זה. לתת לכם את הכלים והידע ליצור עושר אמיתי.</p>
+                </div>
+                <div class="about-image fade-in">
+                    <img src="https://via.placeholder.com/400x300/764ba2/ffffff?text=תמונת+אודות" alt="אודות המרצה">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chart Section -->
+    <section class="section chart-section">
+        <div class="container">
+            <h2 class="section-title fade-in">הכוח המדהים של הריבית הדריבית</h2>
+            <div class="chart-intro fade-in">
+                <p style="text-align: center; font-size: 1.3rem; margin-bottom: 2rem; color: #2c3e50;">
+                    איך 300,000 ש"ח הופכים ל<span style="color: #667eea; font-weight: bold;">35 מיליון ש"ח</span> בתשואה של 10% לשנה
+                </p>
+            </div>
+            <div class="chart-container fade-in">
+                <canvas id="compoundChart" width="800" height="400"></canvas>
+            </div>
+            <div class="chart-stats fade-in">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>השקעה ראשונית</h3>
+                        <p class="stat-number" id="initialAmount">₪300,000</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>תשואה שנתית</h3>
+                        <p class="stat-number">10%</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>תקופה</h3>
+                        <p class="stat-number">50 שנה</p>
+                    </div>
+                    <div class="stat-card highlight">
+                        <h3>סכום סופי</h3>
+                        <p class="stat-number final-amount" id="finalAmount">₪35,455,271</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">צפו בסרטון ההסבר שלי</h2>
+            <div class="video-container fade-in">
+                <div class="video-wrapper">
+                    <!-- Replace this div with actual video embed -->
+                    <div class="video-placeholder">
+                        <h3>כאן יבוא הסרטון שלכם</h3>
+                        <p>במקום הטקסט הזה, תוכלו להטמיע סרטון מיוטיוב, וימיאו או כל פלטפורמה אחרת</p>
+                        <p>פשוט החליפו את הדיב הזה בקוד ההטמעה של הסרטון</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">מה תלמדו בהרצאה</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📈</div>
+                    <h3>השקעות פנסיה חכמות</h3>
+                    <p>איך להכפיל את כספי הפנסיה שלכם על ידי השקעה במדדי מניות. כל מה שצריך לדעת על קרנות הפנסיה והאפשרויות החבויות שלהן.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💰</div>
+                    <h3>מינוף כספי נכון</h3>
+                    <p>הסודות של מינוף כספים בצורה חכמה ובטוחה. איך לקחת הלוואות שיעבדו בעדכם ולא נגדכם, ויהפכו את החובות שלכם לנכסים.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎯</div>
+                    <h3>אסטרטגיות מעשיות</h3>
+                    <p>תוכניות פעולה ברורות וקונקרטיות שתוכלו להתחיל ליישם כבר מחר. לא תיאוריה - רק דברים שעובדים במציאות הישראלית.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>ביטחון וחוקיות</h3>
+                    <p>כל הדרכים שאני מלמד הן חוקיות לחלוטין ובטוחות. אני אסביר לכם איך לנווט במערכת הפיננסית הישראלית בצורה נכונה.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📚</div>
+                    <h3>שיעורים פרטיים</h3>
+                    <p>מעבר להרצאה, אני מעביר גם שיעורים פרטיים מותאמים אישית. נבנה יחד את התוכנית הפיננסית המושלמת עבורכם.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🚀</div>
+                    <h3>תוצאות מהירות</h3>
+                    <p>רוב התלמידים שלי רואים תוצאות כבר תוך חודשים ספורים. הידע הזה יכול לשנות את המצב הפיננסי שלכם לטווח הארוך.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">שאלות נפוצות</h2>
+            <div class="faq-container">
+                <div class="faq-item fade-in">
+                    <div class="faq-question">האם זה באמת בטוח להשקיע כך?</div>
+                    <div class="faq-answer">
+                        <p>כל האסטרטגיות שאני מלמד הן חוקיות לחלוטין ומבוססות על כלים פיננסיים מוכרים. אני מסביר בדיוק איך לנהל סיכונים ולהשקיע בצורה נבונה.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">כמה כסף צריך בכדי להתחיل?</div>
+                    <div class="faq-answer">
+                        <p>תוכלו להתחיל עם כל סכום. חלק מהאסטרטגיות מתחילות כבר עם כמה מאות שקלים בחודש, ואחרות דורשות יותר. אני מתאים את הייעוץ לתקציב שלכם.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">האם אני צריך להבין בפיננסים כדי להצליח?</div>
+                    <div class="faq-answer">
+                        <p>בכלל לא! אני מסביר הכל בצורה פשוטה וברורה. המטרה היא לתת לכם כלים מעשיים שתוכלו להשתמש בהם בלי להיות מומחי פיננסים.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">איך אני יודע שזה עובד?</div>
+                    <div class="faq-answer">
+                        <p>יש לי עשרות תלמידים שכבר רואים תוצאות מרשימות. אני גם אציג לכם דוגמאות קונקרטיות ומספרים אמיתיים מהשוק הישראלי.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">מה מקבלים בשיעור פרטי?</div>
+                    <div class="faq-answer">
+                        <p>בשיעור פרטי אנחנו בונים תוכנית מותאמת בדיוק למצב שלכם - הכנסות, הוצאות, מטרות וחלומות. זה כולל ניתוח של כל הכספים שלכם ובניית אסטרטגיה מלאה.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="section form-section">
+        <div class="container">
+            <h2 class="section-title fade-in">בואו נתחיל את המסע שלכם לעצמאות כלכלית</h2>
+            <div class="form-container fade-in">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">שם מלא</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">אימייל</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">טלפון</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="interest">מה מעניין אתכם יותר?</label>
+                        <select id="interest" name="interest" style="width: 100%; padding: 1rem; border: none; border-radius: 10px; font-size: 1rem;">
+                            <option value="">בחרו אפשרות</option>
+                            <option value="lecture">הרצאה קבוצתית</option>
+                            <option value="private">שיעור פרטי</option>
+                            <option value="both">שניהם</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">ספרו לי קצת על המצב הכלכלי שלכם (לא חובה)</label>
+                        <textarea id="message" name="message" rows="4" placeholder="למשל: איזה סכומים יש לכם בפנסיה, מה המטרות שלכם, מה מעניין אתכם לשמוע..."></textarea>
+                    </div>
+                    <button type="submit" class="cta-button" style="width: 100%;">שלחו את הפרטים ונתחיל!</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 טוב לדעת - כל הזכויות שמורות</p>
+            <p>צרו איתי קשר: <a href="mailto:your@email.com" style="color: #667eea;">your@email.com</a> | טלפון: 050-1234567</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+                
+                // Close all other answers
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.classList.remove('active');
+                });
+                
+                // Toggle current answer
+                if (!isActive) {
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Chart Animation
+        function createCompoundInterestChart() {
+            const canvas = document.getElementById('compoundChart');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const canvasWidth = canvas.width;
+            const canvasHeight = canvas.height;
+            
+            // Chart data
+            const principal = 300000;
+            const rate = 0.10;
+            const years = 50;
+            const data = [];
+            
+            // Calculate compound interest for each year
+            for (let year = 0; year <= years; year++) {
+                const amount = principal * Math.pow(1 + rate, year);
+                data.push({ year, amount });
+            }
+            
+            // Chart dimensions
+            const margin = { top: 40, right: 60, bottom: 60, left: 100 };
+            const chartWidth = canvasWidth - margin.left - margin.right;
+            const chartHeight = canvasHeight - margin.top - margin.bottom;
+            
+            // Scale functions
+            const maxAmount = Math.max(...data.map(d => d.amount));
+            const scaleX = (year) => margin.left + (year / years) * chartWidth;
+            const scaleY = (amount) => canvasHeight - margin.bottom - (amount / maxAmount) * chartHeight;
+            
+            let animationProgress = 0;
+            const animationDuration = 3000; // 3 seconds
+            let startTime = null;
+            
+            function animate(currentTime) {
+                if (!startTime) startTime = currentTime;
+                const elapsed = currentTime - startTime;
+                animationProgress = Math.min(elapsed / animationDuration, 1);
+                
+                // Easing function for smooth animation
+                const easedProgress = 1 - Math.pow(1 - animationProgress, 3);
+                
+                // Clear canvas
+                ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+                
+                // Set up canvas
+                ctx.font = '14px Segoe UI';
+                ctx.textAlign = 'center';
+                ctx.fillStyle = '#2c3e50';
+                
+                // Draw background grid
+                ctx.strokeStyle = '#e9ecef';
+                ctx.lineWidth = 1;
+                
+                // Vertical grid lines
+                for (let i = 0; i <= 5; i++) {
+                    const x = margin.left + (i * chartWidth / 5);
+                    ctx.beginPath();
+                    ctx.moveTo(x, margin.top);
+                    ctx.lineTo(x, canvasHeight - margin.bottom);
+                    ctx.stroke();
+                    
+                    // X-axis labels
+                    ctx.fillStyle = '#6c757d';
+                    ctx.fillText(`${i * 10}`, x, canvasHeight - margin.bottom + 20);
+                }
+                
+                // Horizontal grid lines
+                for (let i = 0; i <= 5; i++) {
+                    const y = margin.top + (i * chartHeight / 5);
+                    ctx.beginPath();
+                    ctx.moveTo(margin.left, y);
+                    ctx.lineTo(canvasWidth - margin.right, y);
+                    ctx.stroke();
+                    
+                    // Y-axis labels
+                    const value = maxAmount - (i * maxAmount / 5);
+                    const label = value >= 1000000 ? 
+                        `${(value / 1000000).toFixed(1)}M` : 
+                        `${(value / 1000).toFixed(0)}K`;
+                    ctx.textAlign = 'right';
+                    ctx.fillText(`₪${label}`, margin.left - 10, y + 5);
+                }
+                
+                // Draw animated curve
+                ctx.beginPath();
+                ctx.strokeStyle = '#667eea';
+                ctx.lineWidth = 4;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                
+                const pointsToShow = Math.floor(data.length * easedProgress);
+                
+                for (let i = 0; i <= pointsToShow && i < data.length; i++) {
+                    const x = scaleX(data[i].year);
+                    const y = scaleY(data[i].amount);
+                    
+                    if (i === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+                ctx.stroke();
+                
+                // Draw gradient fill
+                if (pointsToShow > 0) {
+                    const gradient = ctx.createLinearGradient(0, margin.top, 0, canvasHeight - margin.bottom);
+                    gradient.addColorStop(0, 'rgba(102, 126, 234, 0.3)');
+                    gradient.addColorStop(1, 'rgba(102, 126, 234, 0.05)');
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(scaleX(0), canvasHeight - margin.bottom);
+                    
+                    for (let i = 0; i <= pointsToShow && i < data.length; i++) {
+                        const x = scaleX(data[i].year);
+                        const y = scaleY(data[i].amount);
+                        ctx.lineTo(x, y);
+                    }
+                    
+                    ctx.lineTo(scaleX(data[Math.min(pointsToShow, data.length - 1)].year), canvasHeight - margin.bottom);
+                    ctx.closePath();
+                    ctx.fillStyle = gradient;
+                    ctx.fill();
+                }
+                
+                // Draw current point
+                if (pointsToShow > 0 && pointsToShow < data.length) {
+                    const currentData = data[pointsToShow];
+                    const x = scaleX(currentData.year);
+                    const y = scaleY(currentData.amount);
+                    
+                    // Glow effect
+                    ctx.shadowColor = '#667eea';
+                    ctx.shadowBlur = 15;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, 8, 0, 2 * Math.PI);
+                    ctx.fillStyle = '#667eea';
+                    ctx.fill();
+                    
+                    ctx.shadowBlur = 0;
+                    
+                    // Value label
+                    const amount = currentData.amount;
+                    const label = amount >= 1000000 ? 
+                        `₪${(amount / 1000000).toFixed(1)}M` : 
+                        `₪${(amount / 1000).toFixed(0)}K`;
+                    
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(x - 35, y - 30, 70, 20);
+                    ctx.strokeStyle = '#667eea';
+                    ctx.lineWidth = 2;
+                    ctx.strokeRect(x - 35, y - 30, 70, 20);
+                    
+                    ctx.fillStyle = '#667eea';
+                    ctx.textAlign = 'center';
+                    ctx.font = 'bold 12px Segoe UI';
+                    ctx.fillText(label, x, y - 15);
+                }
+                
+                // Animate numbers in stats
+                const currentAmount = data[Math.min(pointsToShow, data.length - 1)].amount;
+                document.getElementById('finalAmount').textContent = 
+                    `₪${currentAmount.toLocaleString('he-IL', { maximumFractionDigits: 0 })}`;
+                
+                // Axis labels
+                ctx.fillStyle = '#2c3e50';
+                ctx.font = 'bold 16px Segoe UI';
+                ctx.textAlign = 'center';
+                ctx.fillText('שנים', canvasWidth / 2, canvasHeight - 10);
+                
+                ctx.save();
+                ctx.translate(20, canvasHeight / 2);
+                ctx.rotate(-Math.PI / 2);
+                ctx.fillText('סכום (₪)', 0, 0);
+                ctx.restore();
+                
+                // Chart title
+                ctx.font = 'bold 18px Segoe UI';
+                ctx.fillStyle = '#2c3e50';
+                ctx.fillText('גידול ההשקעה לאורך זמן', canvasWidth / 2, 25);
+                
+                if (animationProgress < 1) {
+                    requestAnimationFrame(animate);
+                }
+            }
+            
+            // Start animation when chart comes into view
+            const chartContainer = document.querySelector('.chart-container');
+            const chartObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        requestAnimationFrame(animate);
+                        chartObserver.disconnect();
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            chartObserver.observe(chartContainer);
+        }
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would normally send the form data to your server
+            // For now, we'll just show an alert
+            alert('תודה על הפנייה! אחזור אליכם בהקדם.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+        // Initialize chart when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set canvas size for better quality
+            const canvas = document.getElementById('compoundChart');
+            const container = canvas.parentElement;
+            const containerWidth = container.offsetWidth;
+            
+            canvas.width = Math.min(containerWidth - 40, 900);
+            canvas.height = 500;
+            canvas.style.width = canvas.width + 'px';
+            canvas.style.height = canvas.height + 'px';
+            
+            createCompoundInterestChart();
+        });
+    </script>
+</body>
+</html>
